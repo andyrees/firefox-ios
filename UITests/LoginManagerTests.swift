@@ -606,7 +606,8 @@ class LoginManagerTests: KIFTestCase {
 
         tester().clearTextFromAndThenEnterText(intoCurrentFirstResponder: "changedpassword")
         tester().tapView(withAccessibilityLabel: "Done")
-        //XCTAssertTrue(passwordCell.descriptionLabel.isSecureTextEntry)
+        let passwordFieldAfterChange = tester().waitForView(withAccessibilityIdentifier: "passwordField") as! UITextField
+        XCTAssertTrue(passwordFieldAfterChange.isSecureTextEntry)
 
         // Tap the 'Reveal' menu option
         EarlGrey.selectElement(with: grey_accessibilityID("passwordField")).perform(grey_tap())
